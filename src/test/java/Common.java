@@ -131,4 +131,12 @@ public class Common {
     res[res.length-1] = unique;
     return res;
   }
+
+  public static void fail(String message) {
+    Assert.fail(error(message));
+  }
+
+  public static void assertCondition(boolean condition, String message) {
+    if (!condition) fail(message);
+  }
 }
