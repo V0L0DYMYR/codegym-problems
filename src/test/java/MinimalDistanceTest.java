@@ -8,14 +8,14 @@ import java.util.Collection;
 public class MinimalDistanceTest extends AbstractTest {
 
   String input1;
-    String input2;
+  String input2;
   int expected;
   Runnable task = new Runnable() {
     @Override
     public void run() {
       int actual = new MinimalDistance().minDistance(input1, input2);
       if (expected != actual) {
-        Common.assertEquals(error("\n"+input1+"\n - \n"+input2+"\n"), expected, actual);
+        Common.assertEquals(error(String.valueOf(actual)), expected, actual);
       }
     }
   };
@@ -31,6 +31,10 @@ public class MinimalDistanceTest extends AbstractTest {
   public static Collection<Object[]> data() {
       return Arrays.asList(new Object[][]{
               {"abc", "abcd", 1},
+              {"abc", "abc", 0},
+              {"", "", 0},
+              {"", "a", 1},
+              {"kitten", "sitting", 3},
               {"abc", "def", 3},
               {"Monday", "Summer", 6},
               {"Three Rings for the Elven-kings under the sky,\n" +
@@ -52,10 +56,12 @@ public class MinimalDistanceTest extends AbstractTest {
   @Override
   protected String lastInput() {
     return new StringBuilder()
-        .append("Input: ")
-        .append("\n"+input1+"\n - \n"+input2+"\n")
-        .append("\nExpected: ")
-        .append("" + expected)
+        .append("Input: \"")
+        .append(input1)
+        .append("\", \"")
+        .append(input2)
+        .append("\"\nExpected: ")
+        .append(expected)
         .toString();
   }
 }
