@@ -1,0 +1,7 @@
+Find minimal distance between two words
+
+public class MinimalDistance {
+    public int minDistance(String str1, String str2) {
+        //INSERT YOUR CODE HERE
+    }
+}
