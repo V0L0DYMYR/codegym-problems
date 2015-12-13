@@ -21,7 +21,9 @@ public abstract class AbstractTest {
   @Test
   public void test() {
     try {
-      await().atMost(1, TimeUnit.SECONDS).catchUncaughtExceptions().until(getTask());
+      //Stopwatch stopwatch = new Stopwatch();
+      await().atMost(2, TimeUnit.SECONDS).catchUncaughtExceptions().until(getTask());
+      //System.out.println(TimeUnit.NANOSECONDS.toMillis(stopwatch.getTime()));
     } catch (ConditionTimeoutException e) {
 
       String msg = e.toString();
@@ -57,7 +59,7 @@ public abstract class AbstractTest {
         new StringBuilder()
         .append(lastInput())
         .append("\nActual: \"")
-        .append(actual)
+        .append(Common.print(actual))
         .append('"')
         .toString());
   }

@@ -18,9 +18,7 @@ public class Diff {
     }
 
     public String findDiff(String a, String b) {
-        for (int i = 0; i < a.length(); i++) {
-            text1.add(String.valueOf(a.charAt(i)));
-        }
+
         for (int j = 0; j < b.length(); j++) {
             text2.add(String.valueOf(b.charAt(j)));
         }
@@ -73,4 +71,5 @@ public class Diff {
         }
         return p[i][j];
     }
+
 }

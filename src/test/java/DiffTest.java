@@ -8,14 +8,14 @@ import java.util.Collection;
 public class DiffTest extends AbstractTest {
 
   String input1;
-    String input2;
-    String expected;
+  String input2;
+  String expected;
   Runnable task = new Runnable() {
     @Override
     public void run() {
-        String actual = new Diff().findDiff(input1, input2);
-      if (expected != actual) {
-        Common.assertEquals(error("\n"+input1+"\n - \n"+input2+"\n"), expected, actual);
+      String actual = new Diff().findDiff(input1, input2);
+      if (!expected.equals(actual)) {
+        Common.assertEquals(error(String.valueOf(actual)), expected, actual);
       }
     }
   };
@@ -29,13 +29,12 @@ public class DiffTest extends AbstractTest {
 
   @Parameterized.Parameters
   public static Collection<Object[]> data() {
-      return Arrays.asList(new Object[][]{
-              {"abc", "abc", "--\n++"},
-              {"abc", "cab", "--\n++"},
-              {"abc", "abcd", "--\n++3;"},
-              {"abc", "aaa", "--1;2;\n++1;2;"},
-              {"Sunday", "Monday", "--0;1;\n++0;1;"},
-      });
+    return Arrays.asList(new Object[][]{
+        {"abc", "cab", "--\n++"},
+        {"abc", "abcd", "--\n++3;"},
+        {"abc", "aaa", "--1;2;\n++1;2;"},
+        {"Sunday", "Monday", "--0;1;\n++0;1;"},
+    });
   }
 
   @Override
@@ -46,10 +45,12 @@ public class DiffTest extends AbstractTest {
   @Override
   protected String lastInput() {
     return new StringBuilder()
-        .append("Input: ")
-        .append("\n"+input1+"\n - \n"+input2+"\n")
-        .append("\nExpected: ")
-        .append("" + expected)
+        .append("Input: \"")
+        .append(Common.print(input1))
+        .append("\", \"")
+        .append(Common.print(input2))
+        .append("\"\nExpected: ")
+        .append(Common.print(expected))
         .toString();
   }
 }

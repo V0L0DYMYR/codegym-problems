@@ -74,8 +74,8 @@ public class Common {
     Assert.assertEquals(msg, o1, o2);
   }
 
-  public static void assertEquals(String msg, int[] o1, int[] o2) {
-    Assert.assertArrayEquals(msg, o1, o2);
+  public static void assertEquals(String msg, int[] expected, int[] actual) {
+    Assert.assertArrayEquals(msg, expected, actual);
   }
 
   public static void assertEquals(String msg, Object o1, Object o2) {
@@ -170,5 +170,13 @@ public class Common {
       res.add(element);
     }
     return res;
+  }
+
+  public static String repeat(String pattern, int times) {
+    StringBuilder buf = new StringBuilder(pattern.length()*times);
+    for (int i = 0; i < times; i++) {
+      buf.append(pattern);
+    }
+    return buf.toString();
   }
 }
